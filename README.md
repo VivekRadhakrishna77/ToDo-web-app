@@ -1,5 +1,5 @@
 ## To-Do Web App
-This repository shows a full-stack to-do web app built using React+Vite and AWS Amplify. It is built upon the AWS Amplify React+Vite Starter Template.
+This repository shows a full-stack to-do web app built using React+Vite and AWS Amplify. It is built upon the `AWS Amplify React+Vite Starter Template`.
 
 ## Features
 
