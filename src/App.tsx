@@ -27,9 +27,9 @@ const UserProfile = () => {
     const getUserAttributes = async () => {
       try {
         const attributes = await fetchUserAttributes();
-        let name = attributes.given_name;
-        if (!name) {
-          name = user.signInDetails?.loginId?.split('@')[0];
+        let name = attributes.given_name || '';
+        if (name == '') {
+          name = user.signInDetails?.loginId?.split('@')[0] || '';
         }
 
 
