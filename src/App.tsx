@@ -7,12 +7,13 @@ import { Amplify } from 'aws-amplify';
 import {
   fetchUserAttributes
 } from 'aws-amplify/auth';
-import awsconfig from './aws-exports';
+
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faSignOut } from '@fortawesome/free-solid-svg-icons';
-
-Amplify.configure(awsconfig);
 
 const client = generateClient<Schema>();
 const trash_icon = <FontAwesomeIcon icon={faTrashCan} />;
@@ -27,7 +28,7 @@ const UserProfile = () => {
     const getUserAttributes = async () => {
       try {
         const attributes = await fetchUserAttributes();
-        let name = attributes.given_name || '';
+        let name: string = attributes.given_name || '';
         if (name == '') {
           name = user.signInDetails?.loginId?.split('@')[0] || '';
         }
