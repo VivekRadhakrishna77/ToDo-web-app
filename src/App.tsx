@@ -19,7 +19,6 @@ const client = generateClient<Schema>();
 const trash_icon = <FontAwesomeIcon icon={faTrashCan} />;
 const signout_icon = <FontAwesomeIcon icon={faSignOut} />;
 
-
 const UserProfile = () => {
   const [firstName, setFirstName] = useState('');
   const { user } = useAuthenticator((context) => [context.user]);
@@ -49,9 +48,34 @@ const UserProfile = () => {
   return <h2>{firstName}'s Tasks</h2>;
 };
 
+
 function App() {
+
   const [inputValue, setInputValue] = useState<string>('');
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  // const FetchData = () => {
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       try {
+  //         const subscription = client.models.Todo.observeQuery().subscribe({
+  //           next: (data) => {
+  //             setTodos([...data.items]);
+  //           },
+  //         });
+
+  //         // Clean up the subscription when the component unmounts
+  //         return () => {
+  //           subscription.unsubscribe();
+  //         };
+  //       } catch (error) {
+  //         console.error('Error fetching data', error);
+  //       }
+  //     };
+
+  //     fetchData();
+  //   }, []);
+
+  // }
   const signUpFields = {
 
     signUp: {
@@ -80,20 +104,23 @@ function App() {
       },
     },
   }
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }, []);
+  // FetchData();
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+
 
   function createTodo() {
     const newTask = (document.getElementById("addTaskTextbox") as HTMLInputElement).value;
     if (typeof newTask == 'string' && newTask.trim() != '') {
+
       setInputValue('');
       (document.getElementById('addTaskTextbox') as HTMLInputElement).value = "";
       client.models.Todo.create({ content: newTask.trim() });

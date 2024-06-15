@@ -38,12 +38,12 @@ h2 {
 }
 
 .duck {
+  max-width: 500px;
   display: block;
-  height: 500px;
-  width: 500px;
+  height: 1hw;
+  width: 80vw;
   border: 5px solid white;
 }
-
 
 main {
   margin: 20px;
@@ -203,22 +203,38 @@ a {
 footer {
   display: inline-block;
   margin-top: 200px;
+  text-align: center;
+  font-size: 12pt;
 }
 
-
-
-
-@media screen and (max-width:300px) {
-  body {
-    overflow: hidden;
-  }
-}
 
 
 @media screen and (max-width:500px) {
-  ol {
-    max-width: 200px;
+  body {
+    overflow: fixed;
+    min-width: 100;
+  }
+
+  h1 {
+    font-size: 10vw;
+  }
+
+  footer {
+    margin-top: 100px;
+    font-size: 3vw;
+    text-align: center;
+
+  }
+
+  ul {
+    max-width: 100%;
     overflow: scroll;
+  }
+
+  .duck {
+    width: 80vw;
+    height: auto;
+    /* width: 200px; */
   }
 }
 
