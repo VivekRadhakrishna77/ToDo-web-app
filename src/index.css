@@ -18,7 +18,7 @@ body {
 h1 {
   flex: 1;
   margin: 35px;
-  margin-top: 50px;
+  margin-top: 0px;
   font-family: "robotic-bold";
   font-size: 40pt;
   font-weight: bolder;
@@ -84,8 +84,9 @@ button:focus-visible {
 }
 
 #signOutButton {
+  display: inline;
   opacity: 50%;
-  position: fixed;
+  position: absolute;
   right: 10px;
   top: 5px
 }
