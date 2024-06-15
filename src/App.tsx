@@ -50,7 +50,7 @@ const UserProfile = () => {
 };
 
 function App() {
-
+  const [inputValue, setInputValue] = useState<string>('');
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
   const signUpFields = {
 
@@ -80,7 +80,13 @@ function App() {
       },
     },
   }
+  let onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    createTodo();
+  }
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -89,9 +95,20 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    const newTask = (document.getElementById("addTaskTextbox") as HTMLInputElement).value;
+    if (typeof newTask == 'string' && newTask.trim() != '') {
+      setInputValue('');
+      (document.getElementById('addTaskTextbox') as HTMLInputElement).value = "";
+      client.models.Todo.create({ content: newTask.trim() });
+    }
+
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      createTodo();
+    }
+  };
 
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
@@ -108,9 +125,15 @@ function App() {
 
         <main>
           <UserProfile />
-          <button className="newTodo" onClick={createTodo}>+ Add Task</button>
+
           <ul>
+            <li className="addTodo">
+              <input id="addTaskTextbox" className="addTaskTextbox" placeholder="Add new task..." value={inputValue} onChange={handleInputChange} onKeyDown={handleKeyDown}></input>
+              {inputValue && <button className="newTodoBtn" onClick={createTodo}>+</button>}
+            </li>
+
             {todos.map((todo) => (
+
               <li
                 onClick={() => deleteTodo(todo.id)}
                 key={todo.id}>

@@ -71,8 +71,7 @@ button:hover {
   border-color: #646cff;
 }
 
-button:focus,
-button:focus-visible {
+button:focus button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -101,25 +100,10 @@ button:focus-visible {
   position: relative;
 }
 
-
-main .newTodo {
-  flex: 1;
-  justify-content: center;
-  align-self: right;
-  background-color: #EF7D1C;
-  margin: 5px 0px;
-}
-
-.newTodo:hover {
-  background-color: #DC430E;
-  background-blend-mode: screen;
-}
-
 ul {
-
+  padding-inline-start: 10px;
   min-width: 300px;
   max-width: 500px;
-  padding-inline-start: 10px;
   margin-block-start: 0;
   margin-block-end: 0;
   list-style-type: none;
@@ -130,10 +114,8 @@ ul {
   gap: 1px;
   background-color: black;
   border-radius: 8px;
-  overflow: scroll;
+  overflow: hidden;
 }
-
-
 
 .listItemText {
   margin: 0px 2px;
@@ -141,6 +123,7 @@ ul {
 }
 
 li {
+  padding-inline-start: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -166,8 +149,49 @@ li:hover {
     visibility: visible;
     position: relative;
   }
+}
+
+.addTodo {
+  padding-inline-start: 10px;
+  display: flex;
+  height: 4rem;
+  border-bottom: solid black 2px;
+  /* border-left:  #C76376 10px; */
+}
 
 
+
+.addTodo .newTodoBtn {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: top center;
+  background-color: #EF7D1C;
+  margin: 5px;
+  width: 5rem;
+  height: 2.5rem;
+}
+
+li:hover #addTaskTextbox {
+
+  background: #dadbf9;
+  transform: scale(1.02);
+}
+
+#addTaskTextbox {
+  justify-content: center;
+  height: 3rem;
+  padding: none;
+  display: block;
+  outline: none;
+  border: none;
+
+}
+
+.newTodoBtn:hover {
+
+  background-color: #DC430E;
+  background-blend-mode: screen;
 }
 
 
