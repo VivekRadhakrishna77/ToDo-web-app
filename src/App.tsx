@@ -80,9 +80,6 @@ function App() {
       },
     },
   }
-  let onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    createTodo();
-  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
