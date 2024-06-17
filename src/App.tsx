@@ -92,28 +92,6 @@ function App() {
     },
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const subscription = client.models.Todo.observeQuery().subscribe({
-  //         next: (data) => {
-  //           setTodos([...data.items]);
-  //         },
-  //       });
-
-  //       return () => {
-  //         subscription.unsubscribe();
-  //       };
-  //     } catch (error) {
-  //       console.error('Error fetching data', error);
-  //     }
-  //   };
-
-  //   if (todos.length === 0) {
-  //     fetchData();
-  //   }
-  // }, [todos.length]);
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
